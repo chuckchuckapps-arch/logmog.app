@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LogMog — Track. Adapt. Improve.</title>
+  <meta name="description" content="LogMog is a free iOS fitness app that generates personalised bodyweight workout plans, tracks your macros, and adapts your programme week over week — all on device." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #12121f;
+      --card:      #1c1c2e;
+      --coral:     #ff6b6b;
+      --lime:      #a8e063;
+      --text:      #e8e8f0;
+      --muted:     #8888aa;
+      --radius:    16px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+
+    a { color: var(--coral); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Nav ── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .nav-logo { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.5px; }
+    .nav-logo span { color: var(--coral); }
+    .nav-links { display: flex; gap: 28px; font-size: 0.9rem; color: var(--muted); }
+    .nav-links a { color: var(--muted); }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+    /* ── Hero ── */
+    .hero {
+      text-align: center;
+      padding: 90px 24px 70px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(168,224,99,0.12);
+      color: var(--lime);
+      border: 1px solid rgba(168,224,99,0.3);
+      border-radius: 999px;
+      padding: 5px 16px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    h1 {
+      font-size: clamp(2.4rem, 6vw, 3.8rem);
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      margin-bottom: 22px;
+    }
+    h1 em { font-style: normal; color: var(--coral); }
+    .subtitle {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto 40px;
+    }
+    .cta-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    .btn:hover { opacity: 0.85; text-decoration: none; }
+    .btn-primary { background: var(--coral); color: #fff; }
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1.5px solid rgba(255,255,255,0.18);
+    }
+
+    /* ── Features ── */
+    .section { padding: 72px 24px; max-width: 1000px; margin: 0 auto; }
+    .section-label {
+      text-align: center;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--coral);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      text-align: center;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 48px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 28px;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 16px;
+    }
+    .icon-coral { background: rgba(255,107,107,0.15); }
+    .icon-lime  { background: rgba(168,224,99,0.15); }
+    .icon-blue  { background: rgba(91,141,239,0.15); }
+    .card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .card p  { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── Privacy strip ── */
+    .privacy-strip {
+      background: var(--card);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .privacy-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 48px 24px;
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .privacy-text { flex: 1; min-width: 260px; }
+    .privacy-text h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 10px; }
+    .privacy-text p  { color: var(--muted); font-size: 0.92rem; }
+    .privacy-pills { display: flex; flex-wrap: wrap; gap: 10px; }
+    .pill {
+      background: rgba(168,224,99,0.1);
+      color: var(--lime);
+      border: 1px solid rgba(168,224,99,0.25);
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    footer a { color: var(--muted); }
+    footer a:hover { color: var(--text); text-decoration: none; }
+    .footer-links { display: flex; gap: 24px; justify-content: center; margin-bottom: 12px; }
+
+    @media (max-width: 600px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-logo">Log<span>Mog</span></div>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#privacy">Privacy</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="badge">Free iOS App</div>
+  <h1>Track. Adapt.<br /><em>Improve.</em></h1>
+  <p class="subtitle">
+    LogMog builds your personalised bodyweight workout plan, tracks your macros,
+    and adapts your programme every week — entirely on your iPhone. No account, no subscription, no cloud.
+  </p>
+  <div class="cta-row">
+    <a class="btn btn-primary" href="#">Download on the App Store</a>
+    <a class="btn btn-secondary" href="https://github.com/chuckdevcis/LogMog" target="_blank">View on GitHub</a>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="section" id="features">
+  <p class="section-label">What's inside</p>
+  <h2 class="section-title">Everything you need.<br />Nothing you don't.</h2>
+  <div class="grid">
+
+    <div class="card">
+      <div class="icon icon-coral">🏋️</div>
+      <h3>Smart Workout Plans</h3>
+      <p>Bodyweight or gym — LogMog picks the right exercises for your level and schedules your week automatically.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon icon-lime">🥗</div>
+      <h3>Macro Tracking</h3>
+      <p>Log every meal, see your calorie and macro progress in real time, and get example meals that hit your targets.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon icon-blue">📈</div>
+      <h3>Weekly Adaptation</h3>
+      <p>Review your week and let LogMog adjust volume and targets based on how you actually performed — no guesswork.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon icon-coral">⚖️</div>
+      <h3>TDEE & BMI Calculators</h3>
+      <p>Know exactly how many calories you need. Built-in calculators for TDEE, BMI, and macro splits by goal.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon icon-lime">❤️</div>
+      <h3>Apple Health Integration</h3>
+      <p>Steps and sleep pulled directly from Apple Health. Your dashboard stays up to date without any extra tapping.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon icon-blue">🔒</div>
+      <h3>Fully On-Device</h3>
+      <p>All data lives on your iPhone in SwiftData. No accounts, no servers, no subscriptions — ever.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Privacy strip -->
+<div class="privacy-strip" id="privacy">
+  <div class="privacy-inner">
+    <div class="privacy-text">
+      <h2>Your data stays on your phone.</h2>
+      <p>LogMog collects nothing and sends nothing. Every log, every workout, every measurement is stored locally using Apple's SwiftData framework.</p>
+    </div>
+    <div class="privacy-pills">
+      <span class="pill">No account required</span>
+      <span class="pill">No cloud sync</span>
+      <span class="pill">No analytics</span>
+      <span class="pill">No ads</span>
+      <span class="pill">No subscriptions</span>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-links">
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms of Service</a>
+    <a href="https://github.com/chuckdevcis/LogMog">GitHub</a>
+  </div>
+  <p>&copy; 2026 LogMog &nbsp;·&nbsp; <a href="mailto:chuckchuckapps@gmail.com">chuckchuckapps@gmail.com</a></p>
+</footer>
+
+</body>
+</html>
