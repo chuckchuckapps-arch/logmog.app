@@ -2,17 +2,19 @@
 
 **Track. Adapt. Improve.**
 
-LogMog is a free iOS fitness app that generates a personalised bodyweight (or gym) workout plan, tracks your macros and meals, and adapts your programme every week based on how you actually performed — all entirely on device.
+LogMog is a free iOS fitness app that generates a personalised workout plan, tracks your macros and meals, and adapts your programme every week based on how you actually performed — all entirely on device.
 
 ---
 
 ## Features
 
 - **Workout plans** — bodyweight or gym exercises, auto-scheduled across your available days (full body / upper-lower / push-pull-legs depending on frequency)
-- **Macro & meal tracking** — log meals, see calorie and macro progress in real time, and get example meals tailored to your targets
+- **Macro & meal tracking** — log meals with AI-estimated nutrition, see calorie and macro progress in real time
+- **Activity logging** — log any activity with AI-estimated calorie burn
 - **Weekly adaptation** — the app reviews your adherence each week and adjusts volume and calorie targets accordingly
 - **TDEE, BMI & Macro calculators** — know your numbers before you start
 - **Apple Health integration** — steps and sleep pulled directly from HealthKit, no manual entry needed
+- **AI coaching tips** — on-device personalised coaching via Apple FoundationModels (iOS 26+)
 - **Fully on-device** — SwiftData persistence, no account, no cloud, no subscription
 
 ---
@@ -21,13 +23,29 @@ LogMog is a free iOS fitness app that generates a personalised bodyweight (or gy
 
 | Layer | Technology |
 |---|---|
-| UI | SwiftUI (iOS 17+) |
+| UI | SwiftUI (iOS 26+) |
+| Typography | Figtree (Regular, Medium, SemiBold, Bold, ExtraBold) |
 | Persistence | SwiftData |
 | Architecture | MVVM + `@Observable` |
 | Health data | HealthKit |
-| Notifications | UNUserNotificationCenter |
+| On-device AI | Apple FoundationModels (`@Generable`, `LanguageModelSession`) |
+| Notifications | UNUserNotificationCenter + image attachments |
 | Calculations | On-device (TDEE / Mifflin-St Jeor, macro splits) |
 | Backend | None |
+
+---
+
+## Design tokens
+
+| Token | Hex | Role |
+|---|---|---|
+| `surfaceDark` | `#1A2A1E` | Primary background |
+| `surfaceDarkCard` | `#243529` | Elevated card surface |
+| `coral` | `#E8623D` | Calories, primary CTA |
+| `lime` | `#C7D93E` | Workouts, secondary CTA |
+| `textPrimary` | `#FFFFFF` | Primary text |
+| `textSecondary` | `#8A9E8E` | Muted / label text |
+| `neutralDark` | `#2E4034` | Dividers, outlines |
 
 ---
 
@@ -38,17 +56,19 @@ LogMog/
 ├── App/                  AppCoordinator, AppSettings, DesignTokens
 ├── Calculators/          BMI, TDEE, Macro calculators
 ├── Data/                 ExerciseLibrary, PersistenceController
-├── Engines/              AdaptationEngine, ProgramGenerator
+├── Engines/              AdaptationEngine
+├── Fonts/                Figtree-Regular/Medium/SemiBold/Bold/ExtraBold/Light.ttf
 ├── Models/               UserProfile, WeeklyProgram, WorkoutDay, DailyLog, …
 ├── Services/             HealthKitService, NotificationService, HapticManager
 └── Views/
     ├── Dashboard/        Today tab
     ├── WeeklyPlan/       Plan tab
-    ├── Meals/            Meals tab
+    ├── Meals/            Log tab
     ├── Logging/          Log sheets + AdaptationSheet
-    ├── Calculators/      Tools tab
+    ├── Calculators/      Numbers tab
     ├── Settings/         Settings tab
-    └── Onboarding/       First-run flow
+    ├── Onboarding/       First-run flow
+    └── Debug/            UI preview screen (remove before shipping)
 docs/                     GitHub Pages (logmog.app)
 ```
 
@@ -60,7 +80,7 @@ docs/                     GitHub Pages (logmog.app)
 2. Open `LogMog.xcodeproj` in Xcode 16+
 3. Select your development team in **Signing & Capabilities**
 4. Enable the **HealthKit** capability if not already present
-5. Build and run on an iPhone (iOS 17+) or simulator
+5. Build and run on an iPhone (iOS 26+) or simulator
 
 No third-party dependencies — everything uses native Apple frameworks.
 

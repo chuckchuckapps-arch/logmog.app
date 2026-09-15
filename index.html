@@ -4,24 +4,28 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LogMog — Track. Adapt. Improve.</title>
-  <meta name="description" content="LogMog is a free iOS fitness app that generates personalised bodyweight workout plans, tracks your macros, and adapts your programme week over week — all on device." />
+  <meta name="description" content="LogMog is a free iOS fitness app that generates personalised workout plans, tracks your macros, and adapts your programme week over week — all on device." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:        #12121f;
-      --card:      #1c1c2e;
-      --coral:     #ff6b6b;
-      --lime:      #a8e063;
-      --text:      #e8e8f0;
-      --muted:     #8888aa;
+      --bg:        #1A2A1E;
+      --card:      #243529;
+      --coral:     #E8623D;
+      --lime:      #C7D93E;
+      --text:      #FFFFFF;
+      --muted:     #8A9E8E;
+      --neutral:   #2E4034;
       --radius:    16px;
     }
 
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif;
       line-height: 1.6;
     }
 
@@ -34,10 +38,23 @@
       align-items: center;
       justify-content: space-between;
       padding: 20px 40px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid var(--neutral);
     }
-    .nav-logo { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.5px; }
-    .nav-logo span { color: var(--coral); }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    .nav-logo img {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+    }
+    .nav-logo .log { color: var(--coral); }
+    .nav-logo .mog { color: var(--lime); }
     .nav-links { display: flex; gap: 28px; font-size: 0.9rem; color: var(--muted); }
     .nav-links a { color: var(--muted); }
     .nav-links a:hover { color: var(--text); text-decoration: none; }
@@ -45,20 +62,28 @@
     /* ── Hero ── */
     .hero {
       text-align: center;
-      padding: 90px 24px 70px;
+      padding: 80px 24px 60px;
       max-width: 720px;
       margin: 0 auto;
     }
+    .hero-icon {
+      width: 100px;
+      height: 100px;
+      border-radius: 22px;
+      margin: 0 auto 32px;
+      display: block;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
     .badge {
       display: inline-block;
-      background: rgba(168,224,99,0.12);
+      background: rgba(199,217,62,0.12);
       color: var(--lime);
-      border: 1px solid rgba(168,224,99,0.3);
+      border: 1px solid rgba(199,217,62,0.3);
       border-radius: 999px;
       padding: 5px 16px;
       font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
+      font-weight: 700;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
       margin-bottom: 28px;
     }
@@ -71,7 +96,7 @@
     }
     h1 em { font-style: normal; color: var(--coral); }
     .subtitle {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       color: var(--muted);
       max-width: 520px;
       margin: 0 auto 40px;
@@ -83,6 +108,7 @@
       gap: 8px;
       padding: 14px 28px;
       border-radius: 999px;
+      font-family: 'Figtree', sans-serif;
       font-size: 0.95rem;
       font-weight: 700;
       cursor: pointer;
@@ -93,7 +119,7 @@
     .btn-secondary {
       background: transparent;
       color: var(--text);
-      border: 1.5px solid rgba(255,255,255,0.18);
+      border: 1.5px solid var(--neutral);
     }
 
     /* ── Features ── */
@@ -123,7 +149,7 @@
       background: var(--card);
       border-radius: var(--radius);
       padding: 28px;
-      border: 1px solid rgba(255,255,255,0.06);
+      border: 1px solid var(--neutral);
     }
     .icon {
       width: 44px; height: 44px;
@@ -132,8 +158,8 @@
       font-size: 1.3rem;
       margin-bottom: 16px;
     }
-    .icon-coral { background: rgba(255,107,107,0.15); }
-    .icon-lime  { background: rgba(168,224,99,0.15); }
+    .icon-coral { background: rgba(232,98,61,0.15); }
+    .icon-lime  { background: rgba(199,217,62,0.15); }
     .icon-blue  { background: rgba(91,141,239,0.15); }
     .card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
     .card p  { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
@@ -141,8 +167,8 @@
     /* ── Privacy strip ── */
     .privacy-strip {
       background: var(--card);
-      border-top: 1px solid rgba(255,255,255,0.06);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      border-top: 1px solid var(--neutral);
+      border-bottom: 1px solid var(--neutral);
     }
     .privacy-inner {
       max-width: 900px;
@@ -158,9 +184,9 @@
     .privacy-text p  { color: var(--muted); font-size: 0.92rem; }
     .privacy-pills { display: flex; flex-wrap: wrap; gap: 10px; }
     .pill {
-      background: rgba(168,224,99,0.1);
+      background: rgba(199,217,62,0.1);
       color: var(--lime);
-      border: 1px solid rgba(168,224,99,0.25);
+      border: 1px solid rgba(199,217,62,0.25);
       border-radius: 999px;
       padding: 6px 14px;
       font-size: 0.8rem;
@@ -173,7 +199,7 @@
       padding: 40px 24px;
       font-size: 0.82rem;
       color: var(--muted);
-      border-top: 1px solid rgba(255,255,255,0.06);
+      border-top: 1px solid var(--neutral);
     }
     footer a { color: var(--muted); }
     footer a:hover { color: var(--text); text-decoration: none; }
@@ -189,7 +215,10 @@
 
 <!-- Nav -->
 <nav>
-  <div class="nav-logo">Log<span>Mog</span></div>
+  <div class="nav-logo">
+    <img src="icon.png" alt="LogMog icon" />
+    <span><span class="log">log</span><span class="mog">mog</span></span>
+  </div>
   <div class="nav-links">
     <a href="#features">Features</a>
     <a href="#privacy">Privacy</a>
@@ -200,10 +229,11 @@
 
 <!-- Hero -->
 <section class="hero">
+  <img class="hero-icon" src="icon.png" alt="LogMog app icon" />
   <div class="badge">Free iOS App</div>
   <h1>Track. Adapt.<br /><em>Improve.</em></h1>
   <p class="subtitle">
-    LogMog builds your personalised bodyweight workout plan, tracks your macros,
+    LogMog builds your personalised workout plan, tracks your macros,
     and adapts your programme every week — entirely on your iPhone. No account, no subscription, no cloud.
   </p>
   <div class="cta-row">
@@ -227,7 +257,7 @@
     <div class="card">
       <div class="icon icon-lime">🥗</div>
       <h3>Macro Tracking</h3>
-      <p>Log every meal, see your calorie and macro progress in real time, and get example meals that hit your targets.</p>
+      <p>Log every meal, see your calorie and macro progress in real time, and get AI-estimated nutrition for anything you eat.</p>
     </div>
 
     <div class="card">
