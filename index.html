@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LogMog — Track. Adapt. Improve.</title>
-  <meta name="description" content="LogMog is a free iOS fitness app that generates personalised workout plans, tracks your macros, and adapts your programme week over week — all on device." />
+  <meta name="description" content="LogMog is a free iOS fitness app that generates personalised workout plans, tracks your macros, and adapts your programme every week — entirely on device." />
+  <link rel="icon" type="image/png" href="icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -12,21 +13,22 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:        #1A2A1E;
-      --card:      #243529;
-      --coral:     #E8623D;
-      --lime:      #C7D93E;
-      --text:      #FFFFFF;
-      --muted:     #8A9E8E;
-      --neutral:   #2E4034;
-      --radius:    16px;
+      --bg:      #1A2A1E;
+      --card:    #243529;
+      --coral:   #E8623D;
+      --lime:    #C7D93E;
+      --text:    #FFFFFF;
+      --muted:   #8A9E8E;
+      --neutral: #2E4034;
+      --r:       16px;
     }
 
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: 'Figtree', system-ui, sans-serif;
       line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
 
     a { color: var(--coral); text-decoration: none; }
@@ -39,82 +41,101 @@
       justify-content: space-between;
       padding: 20px 40px;
       border-bottom: 1px solid var(--neutral);
+      position: sticky;
+      top: 0;
+      background: rgba(26,42,30,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 100;
     }
     .nav-logo {
       display: flex;
       align-items: center;
       gap: 10px;
-      font-size: 1.4rem;
-      font-weight: 800;
-      letter-spacing: -0.5px;
+      text-decoration: none;
     }
     .nav-logo img {
-      width: 36px;
-      height: 36px;
+      width: 32px;
+      height: 32px;
       border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
     }
-    .nav-logo .log { color: var(--coral); }
-    .nav-logo .mog { color: var(--lime); }
-    .nav-links { display: flex; gap: 28px; font-size: 0.9rem; color: var(--muted); }
-    .nav-links a { color: var(--muted); }
+    .nav-wordmark {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+    }
+    .nav-wordmark .log { color: var(--coral); }
+    .nav-wordmark .mog { color: var(--lime); }
+    .nav-links { display: flex; gap: 28px; font-size: 0.88rem; }
+    .nav-links a { color: var(--muted); transition: color 0.15s; }
     .nav-links a:hover { color: var(--text); text-decoration: none; }
 
     /* ── Hero ── */
     .hero {
       text-align: center;
-      padding: 80px 24px 60px;
-      max-width: 720px;
+      padding: 96px 24px 72px;
+      max-width: 680px;
       margin: 0 auto;
     }
-    .hero-icon {
-      width: 100px;
-      height: 100px;
-      border-radius: 22px;
-      margin: 0 auto 32px;
+    .app-icon {
       display: block;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      width: 112px;
+      height: 112px;
+      border-radius: 26px;
+      margin: 0 auto 36px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.06);
     }
     .badge {
-      display: inline-block;
-      background: rgba(199,217,62,0.12);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(199,217,62,0.1);
       color: var(--lime);
-      border: 1px solid rgba(199,217,62,0.3);
+      border: 1px solid rgba(199,217,62,0.28);
       border-radius: 999px;
-      padding: 5px 16px;
-      font-size: 0.78rem;
+      padding: 5px 14px;
+      font-size: 0.75rem;
       font-weight: 700;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.07em;
       text-transform: uppercase;
       margin-bottom: 28px;
     }
+    .badge::before { content: "●"; font-size: 0.5rem; }
     h1 {
-      font-size: clamp(2.4rem, 6vw, 3.8rem);
+      font-size: clamp(2.6rem, 6vw, 4rem);
       font-weight: 900;
-      letter-spacing: -1.5px;
-      line-height: 1.1;
-      margin-bottom: 22px;
+      letter-spacing: -2px;
+      line-height: 1.05;
+      margin-bottom: 20px;
     }
     h1 em { font-style: normal; color: var(--coral); }
     .subtitle {
       font-size: 1.1rem;
       color: var(--muted);
-      max-width: 520px;
+      max-width: 500px;
       margin: 0 auto 40px;
+      line-height: 1.65;
     }
-    .cta-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .cta-row {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
     .btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 14px 28px;
+      padding: 13px 26px;
       border-radius: 999px;
       font-family: 'Figtree', sans-serif;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       font-weight: 700;
       cursor: pointer;
-      transition: opacity 0.15s;
+      transition: opacity 0.15s, transform 0.1s;
     }
-    .btn:hover { opacity: 0.85; text-decoration: none; }
+    .btn:hover { opacity: 0.88; transform: translateY(-1px); text-decoration: none; }
     .btn-primary { background: var(--coral); color: #fff; }
     .btn-secondary {
       background: transparent;
@@ -123,46 +144,54 @@
     }
 
     /* ── Features ── */
-    .section { padding: 72px 24px; max-width: 1000px; margin: 0 auto; }
-    .section-label {
+    .section {
+      padding: 80px 24px;
+      max-width: 1020px;
+      margin: 0 auto;
+    }
+    .section-eyebrow {
       text-align: center;
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--coral);
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
-    .section-title {
+    .section-heading {
       text-align: center;
-      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-size: clamp(1.7rem, 4vw, 2.6rem);
       font-weight: 800;
-      letter-spacing: -0.5px;
-      margin-bottom: 48px;
+      letter-spacing: -0.8px;
+      line-height: 1.15;
+      margin-bottom: 52px;
     }
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
     }
     .card {
       background: var(--card);
-      border-radius: var(--radius);
+      border-radius: var(--r);
       padding: 28px;
       border: 1px solid var(--neutral);
     }
-    .icon {
-      width: 44px; height: 44px;
+    .feature-icon {
+      width: 42px;
+      height: 42px;
       border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.3rem;
-      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      margin-bottom: 14px;
     }
-    .icon-coral { background: rgba(232,98,61,0.15); }
-    .icon-lime  { background: rgba(199,217,62,0.15); }
-    .icon-blue  { background: rgba(91,141,239,0.15); }
+    .ic-coral { background: rgba(232,98,61,0.14); }
+    .ic-lime  { background: rgba(199,217,62,0.14); }
+    .ic-blue  { background: rgba(100,160,255,0.14); }
     .card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
-    .card p  { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+    .card p  { font-size: 0.875rem; color: var(--muted); line-height: 1.6; }
 
     /* ── Privacy strip ── */
     .privacy-strip {
@@ -173,52 +202,58 @@
     .privacy-inner {
       max-width: 900px;
       margin: 0 auto;
-      padding: 48px 24px;
+      padding: 56px 24px;
       display: flex;
       align-items: center;
-      gap: 40px;
+      gap: 48px;
       flex-wrap: wrap;
     }
-    .privacy-text { flex: 1; min-width: 260px; }
-    .privacy-text h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 10px; }
-    .privacy-text p  { color: var(--muted); font-size: 0.92rem; }
-    .privacy-pills { display: flex; flex-wrap: wrap; gap: 10px; }
+    .privacy-copy { flex: 1; min-width: 260px; }
+    .privacy-copy h2 { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 10px; }
+    .privacy-copy p  { color: var(--muted); font-size: 0.9rem; line-height: 1.65; }
+    .pills { display: flex; flex-wrap: wrap; gap: 10px; }
     .pill {
-      background: rgba(199,217,62,0.1);
+      background: rgba(199,217,62,0.09);
       color: var(--lime);
-      border: 1px solid rgba(199,217,62,0.25);
+      border: 1px solid rgba(199,217,62,0.22);
       border-radius: 999px;
       padding: 6px 14px;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 600;
     }
 
     /* ── Footer ── */
     footer {
       text-align: center;
-      padding: 40px 24px;
-      font-size: 0.82rem;
+      padding: 44px 24px;
+      font-size: 0.8rem;
       color: var(--muted);
       border-top: 1px solid var(--neutral);
     }
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
     footer a { color: var(--muted); }
     footer a:hover { color: var(--text); text-decoration: none; }
-    .footer-links { display: flex; gap: 24px; justify-content: center; margin-bottom: 12px; }
 
     @media (max-width: 600px) {
       nav { padding: 16px 20px; }
       .nav-links { display: none; }
+      h1 { letter-spacing: -1px; }
     }
   </style>
 </head>
 <body>
 
-<!-- Nav -->
 <nav>
-  <div class="nav-logo">
-    <img src="icon.png" alt="LogMog icon" />
-    <span><span class="log">log</span><span class="mog">mog</span></span>
-  </div>
+  <a class="nav-logo" href="/">
+    <img src="icon.png" alt="LogMog" />
+    <span class="nav-wordmark"><span class="log">log</span><span class="mog">mog</span></span>
+  </a>
   <div class="nav-links">
     <a href="#features">Features</a>
     <a href="#privacy">Privacy</a>
@@ -227,59 +262,57 @@
   </div>
 </nav>
 
-<!-- Hero -->
 <section class="hero">
-  <img class="hero-icon" src="icon.png" alt="LogMog app icon" />
+  <img class="app-icon" src="icon.png" alt="LogMog app icon" />
   <div class="badge">Free iOS App</div>
   <h1>Track. Adapt.<br /><em>Improve.</em></h1>
   <p class="subtitle">
-    LogMog builds your personalised workout plan, tracks your macros,
-    and adapts your programme every week — entirely on your iPhone. No account, no subscription, no cloud.
+    LogMog generates your personalised workout plan, tracks your macros,
+    and adapts your programme every week — entirely on your iPhone. No account. No subscription. No cloud.
   </p>
   <div class="cta-row">
     <a class="btn btn-primary" href="#">Download on the App Store</a>
-    <a class="btn btn-secondary" href="https://github.com/chuckdevcis/LogMog" target="_blank">View on GitHub</a>
+    <a class="btn btn-secondary" href="https://github.com/chuckdevcis/LogMog" target="_blank" rel="noopener">View on GitHub</a>
   </div>
 </section>
 
-<!-- Features -->
 <section class="section" id="features">
-  <p class="section-label">What's inside</p>
-  <h2 class="section-title">Everything you need.<br />Nothing you don't.</h2>
+  <p class="section-eyebrow">What's inside</p>
+  <h2 class="section-heading">Everything you need.<br />Nothing you don't.</h2>
   <div class="grid">
 
     <div class="card">
-      <div class="icon icon-coral">🏋️</div>
+      <div class="feature-icon ic-coral">🏋️</div>
       <h3>Smart Workout Plans</h3>
-      <p>Bodyweight or gym — LogMog picks the right exercises for your level and schedules your week automatically.</p>
+      <p>Bodyweight or gym — LogMog picks exercises for your level and schedules your week automatically based on your available days.</p>
     </div>
 
     <div class="card">
-      <div class="icon icon-lime">🥗</div>
+      <div class="feature-icon ic-lime">🥗</div>
       <h3>Macro Tracking</h3>
-      <p>Log every meal, see your calorie and macro progress in real time, and get AI-estimated nutrition for anything you eat.</p>
+      <p>Log every meal, watch your calorie and macro progress in real time, and get AI-estimated nutrition for anything you eat.</p>
     </div>
 
     <div class="card">
-      <div class="icon icon-blue">📈</div>
+      <div class="feature-icon ic-blue">📈</div>
       <h3>Weekly Adaptation</h3>
-      <p>Review your week and let LogMog adjust volume and targets based on how you actually performed — no guesswork.</p>
+      <p>Review your week and let LogMog adjust volume and targets based on how you actually performed — no manual tweaking needed.</p>
     </div>
 
     <div class="card">
-      <div class="icon icon-coral">⚖️</div>
+      <div class="feature-icon ic-coral">⚖️</div>
       <h3>TDEE & BMI Calculators</h3>
-      <p>Know exactly how many calories you need. Built-in calculators for TDEE, BMI, and macro splits by goal.</p>
+      <p>Know exactly how many calories you need with built-in calculators for TDEE, BMI, and macro splits by goal.</p>
     </div>
 
     <div class="card">
-      <div class="icon icon-lime">❤️</div>
+      <div class="feature-icon ic-lime">❤️</div>
       <h3>Apple Health Integration</h3>
-      <p>Steps and sleep pulled directly from Apple Health. Your dashboard stays up to date without any extra tapping.</p>
+      <p>Steps and sleep pulled directly from Apple Health — your dashboard stays current without any extra tapping.</p>
     </div>
 
     <div class="card">
-      <div class="icon icon-blue">🔒</div>
+      <div class="feature-icon ic-blue">🔒</div>
       <h3>Fully On-Device</h3>
       <p>All data lives on your iPhone in SwiftData. No accounts, no servers, no subscriptions — ever.</p>
     </div>
@@ -287,29 +320,28 @@
   </div>
 </section>
 
-<!-- Privacy strip -->
 <div class="privacy-strip" id="privacy">
   <div class="privacy-inner">
-    <div class="privacy-text">
+    <div class="privacy-copy">
       <h2>Your data stays on your phone.</h2>
-      <p>LogMog collects nothing and sends nothing. Every log, every workout, every measurement is stored locally using Apple's SwiftData framework.</p>
+      <p>LogMog collects nothing and sends nothing. Every log, every workout, every measurement is stored locally using Apple's SwiftData framework. On-device AI via Apple FoundationModels means even your coaching tips never leave your device.</p>
     </div>
-    <div class="privacy-pills">
+    <div class="pills">
       <span class="pill">No account required</span>
       <span class="pill">No cloud sync</span>
       <span class="pill">No analytics</span>
       <span class="pill">No ads</span>
       <span class="pill">No subscriptions</span>
+      <span class="pill">On-device AI</span>
     </div>
   </div>
 </div>
 
-<!-- Footer -->
 <footer>
   <div class="footer-links">
     <a href="privacy.html">Privacy Policy</a>
     <a href="terms.html">Terms of Service</a>
-    <a href="https://github.com/chuckdevcis/LogMog">GitHub</a>
+    <a href="https://github.com/chuckdevcis/LogMog" target="_blank" rel="noopener">GitHub</a>
   </div>
   <p>&copy; 2026 LogMog &nbsp;·&nbsp; <a href="mailto:chuckchuckapps@gmail.com">chuckchuckapps@gmail.com</a></p>
 </footer>

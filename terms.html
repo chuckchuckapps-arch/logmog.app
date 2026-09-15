@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Terms of Service — LogMog</title>
+  <link rel="icon" type="image/png" href="icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -18,53 +19,115 @@
       --muted:   #8A9E8E;
       --neutral: #2E4034;
     }
-    body { background: var(--bg); color: var(--text); font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.7; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Figtree', system-ui, sans-serif;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
     a { color: var(--coral); }
+    a:hover { text-decoration: underline; }
+
     nav {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 20px 40px; border-bottom: 1px solid var(--neutral);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 40px;
+      border-bottom: 1px solid var(--neutral);
+      position: sticky;
+      top: 0;
+      background: rgba(26,42,30,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 100;
     }
     .nav-logo {
-      display: flex; align-items: center; gap: 10px;
-      font-size: 1.4rem; font-weight: 800; letter-spacing: -0.5px;
-      text-decoration: none; color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
     }
-    .nav-logo img { width: 32px; height: 32px; border-radius: 7px; }
-    .nav-logo .log { color: var(--coral); }
-    .nav-logo .mog { color: var(--lime); }
-    .back { font-size: 0.88rem; color: var(--muted); }
+    .nav-logo img {
+      width: 30px;
+      height: 30px;
+      border-radius: 7px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+    .nav-wordmark {
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+    }
+    .nav-wordmark .log { color: var(--coral); }
+    .nav-wordmark .mog { color: var(--lime); }
+    .back { font-size: 0.85rem; }
     .back a { color: var(--muted); }
-    .back a:hover { color: var(--text); }
-    main { max-width: 720px; margin: 0 auto; padding: 60px 24px 80px; }
-    .meta { font-size: 0.82rem; color: var(--muted); margin-bottom: 40px; }
-    h1 { font-size: 2.2rem; font-weight: 900; letter-spacing: -0.5px; margin-bottom: 8px; }
+    .back a:hover { color: var(--text); text-decoration: none; }
+
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 64px 24px 88px;
+    }
+    .meta {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 40px;
+    }
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
     h1 em { font-style: normal; color: var(--coral); }
-    h2 { font-size: 1.1rem; font-weight: 700; margin: 36px 0 10px; }
-    p  { color: var(--muted); font-size: 0.94rem; margin-bottom: 14px; }
-    ul { color: var(--muted); font-size: 0.94rem; padding-left: 20px; margin-bottom: 14px; }
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 40px 0 10px;
+      color: var(--text);
+    }
+    p  { color: var(--muted); font-size: 0.93rem; margin-bottom: 14px; }
+    ul { color: var(--muted); font-size: 0.93rem; padding-left: 20px; margin-bottom: 14px; }
     ul li { margin-bottom: 6px; }
     .highlight {
       background: rgba(232,98,61,0.07);
       border: 1px solid rgba(232,98,61,0.2);
-      border-radius: 12px;
+      border-radius: 14px;
       padding: 20px 24px;
       margin: 32px 0;
     }
-    .highlight p { color: var(--coral); margin: 0; font-size: 0.92rem; font-weight: 500; }
+    .highlight p {
+      color: var(--coral);
+      margin: 0;
+      font-size: 0.92rem;
+      font-weight: 500;
+    }
+
     footer {
-      text-align: center; padding: 32px 24px;
-      font-size: 0.8rem; color: var(--muted);
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 0.8rem;
+      color: var(--muted);
       border-top: 1px solid var(--neutral);
     }
     footer a { color: var(--muted); }
+    footer a:hover { color: var(--text); text-decoration: none; }
+
+    @media (max-width: 600px) {
+      nav { padding: 16px 20px; }
+      h1  { font-size: 1.9rem; }
+    }
   </style>
 </head>
 <body>
 
 <nav>
   <a class="nav-logo" href="/">
-    <img src="icon.png" alt="LogMog icon" />
-    <span><span class="log">log</span><span class="mog">mog</span></span>
+    <img src="icon.png" alt="LogMog" />
+    <span class="nav-wordmark"><span class="log">log</span><span class="mog">mog</span></span>
   </a>
   <div class="back"><a href="/">← Back to home</a></div>
 </nav>
@@ -98,7 +161,7 @@
   <p>LogMog is provided "as is" and "as available" without warranties of any kind, express or implied. We do not warrant that the app will be error-free, uninterrupted, or that workout and nutrition recommendations will meet your individual fitness goals.</p>
 
   <h2>6. Limitation of liability</h2>
-  <p>To the maximum extent permitted by law, Chuck Silver shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of LogMog, including but not limited to injury resulting from following workout suggestions, or health outcomes resulting from following meal suggestions.</p>
+  <p>To the maximum extent permitted by law, Chuck Silver shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of LogMog, including but not limited to injury resulting from following workout suggestions or health outcomes resulting from following meal suggestions.</p>
 
   <h2>7. Third-party services</h2>
   <p>LogMog integrates with Apple HealthKit and Apple's on-device FoundationModels framework under Apple's terms. Use of these frameworks is subject to <a href="https://www.apple.com/legal/privacy/">Apple's Privacy Policy</a>. We have no control over Apple's services.</p>
